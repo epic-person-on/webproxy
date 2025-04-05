@@ -4,6 +4,7 @@ import { hostname } from "node:os";
 import wisp from "wisp-server-node";
 import Fastify from "fastify";
 import fastifyStatic from "@fastify/static";
+import disableCache from "fastify-disablecache";
 
 // static paths
 import { publicPath } from "ultraviolet-static";
@@ -26,7 +27,7 @@ const fastify = Fastify({
 	},
 });
 
-  
+fastify.register(disableCache);
 
 fastify.register(fastifyStatic, {
 	root: publicPath,
@@ -81,7 +82,7 @@ function shutdown() {
 
 let port = parseInt(process.env.PORT || "");
 
-if (isNaN(port)) port = 8080;
+if (isNaN(port)) port = 3000;
 
 fastify.listen({
 	port: port,

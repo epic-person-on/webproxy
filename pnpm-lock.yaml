@@ -26,6 +26,9 @@ importers:
       fastify:
         specifier: ^5.0.0
         version: 5.0.0
+      fastify-disablecache:
+        specifier: ^4.0.1
+        version: 4.0.1
       ultraviolet-static:
         specifier: file:static
         version: file:static
@@ -354,6 +357,10 @@ packages:
 
   fast-uri@3.0.3:
     resolution: {integrity: sha512-aLrHthzCjH5He4Z2H9YZ+v6Ujb9ocRuW6ZzkJQOrTxleEijANq4v1TsaPaVG1PZcuurEzrLcWRyYBYXD5cEiaw==}
+
+  fastify-disablecache@4.0.1:
+    resolution: {integrity: sha512-E8zPwQbdNVAZDd2pbiq2WmmovdcTy+bV3YOgNZi9OxJZ1uLNFEPAJNxlF694OW0iDtS6gSqHV5CADmvvBfYh/g==}
+    engines: {node: '>=20'}
 
   fastify-plugin@5.0.1:
     resolution: {integrity: sha512-HCxs+YnRaWzCl+cWRYFnHmeRFyR5GVnJTAaCJQiYzQSDwK9MgJdyAsuL3nh0EWRCYMgQ5MeziymvmAhUHYHDUQ==}
@@ -1082,6 +1089,10 @@ snapshots:
   fast-uri@2.4.0: {}
 
   fast-uri@3.0.3: {}
+
+  fastify-disablecache@4.0.1:
+    dependencies:
+      fastify-plugin: 5.0.1
 
   fastify-plugin@5.0.1: {}
 
