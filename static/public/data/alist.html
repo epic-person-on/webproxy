@@ -27,16 +27,18 @@
             padding: 10px;
             display: flex;
             justify-content: center;
+            margin-bottom: 20px; /* Added space below the search bar */
         }
 
         .search-container input {
             width: 80%;
-            padding: 10px;
+            padding: 12px; /* Increased padding for better visibility */
             background-color: #333;
             color: #f1f1f1;
             border: 2px solid #444;
             border-radius: 5px;
             font-size: 1rem;
+            box-sizing: border-box; /* Ensures padding is included in width */
         }
 
         .search-container input::placeholder {
@@ -124,7 +126,7 @@
                 
                 // Open game in new tab when the game card is clicked
                 gameItem.onclick = function() {
-                    window.open("/view.html?q="+game.url, '_blank');
+                    window.location.href = "/view.html?q="+game.url;
                 };
 
                 gameList.appendChild(gameItem);

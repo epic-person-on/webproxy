@@ -1,4 +1,5 @@
 window.addEventListener('load', function () {
+    registerSW();
     const urlParams = new URLSearchParams(window.location.search);
     const searchQuery = urlParams.get('q');
     const connection = new BareMux.BareMuxConnection("/baremux/worker.js")
@@ -22,8 +23,6 @@ window.addEventListener('load', function () {
             iframeSrc = `https://www.google.com/search?q=${encodeURIComponent(searchQuery)}`;
         }
 
-
-        registerSW();
     
         const url = search(searchQuery, "https://www.google.com/search?q=%s");
     

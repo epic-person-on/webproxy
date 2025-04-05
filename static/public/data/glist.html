@@ -124,7 +124,7 @@
                 
                 // Open game in new tab when the game card is clicked
                 gameItem.onclick = function() {
-                    window.open("/view.html?q="+game.url, '_blank');
+                    window.location.href("/view.html?q="+game.url);
                 };
 
                 gameList.appendChild(gameItem);
