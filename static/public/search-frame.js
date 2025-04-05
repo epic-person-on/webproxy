@@ -24,7 +24,6 @@ window.addEventListener('load', function () {
         }
 
     
-        const url = search(searchQuery, "https://www.google.com/search?q=%s");
     
         let wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
         if (connection.getTransport() !== "/epoxy/index.mjs") {
