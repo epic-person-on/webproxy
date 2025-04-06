@@ -1,8 +1,11 @@
+const connection = new BareMux.BareMuxConnection("/baremux/worker.js")
+
 window.addEventListener('load', function () {
+
     registerSW();
+
     const urlParams = new URLSearchParams(window.location.search);
     const searchQuery = urlParams.get('q');
-    const connection = new BareMux.BareMuxConnection("/baremux/worker.js")
 
     if (searchQuery) {
         const frame = document.getElementById('search-frame');
@@ -32,6 +35,7 @@ window.addEventListener('load', function () {
         // Set the iframe's src to the value stored in iframeSrc
         frame.src = __uv$config.prefix + __uv$config.encodeUrl(iframeSrc);
 
-   
+
+
     }
 });
