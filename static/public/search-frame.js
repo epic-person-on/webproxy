@@ -1,4 +1,4 @@
-const connection = new BareMux.BareMuxConnection("/baremux/worker.js")
+const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
 
 window.addEventListener('load', function () {
 
@@ -20,22 +20,24 @@ window.addEventListener('load', function () {
                 return false;  
             }
         }
+
         if (isValidUrl(searchQuery)) {
             iframeSrc = searchQuery;
         } else {
             iframeSrc = `https://www.google.com/search?q=${encodeURIComponent(searchQuery)}`;
         }
 
-    
-    
-        let wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
-        if (connection.getTransport() !== "/epoxy/index.mjs") {
-            connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
+        const isBlocked = blocked.some(blockedUrl => iframeSrc.toLowerCase().includes(blockedUrl.toLowerCase()));
+
+        if (isBlocked) {
+            frame.src = "block.html";  
+        } else {
+            let wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
+            if (connection.getTransport() !== "/epoxy/index.mjs") {
+                connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
+            }
+
+            frame.src = __uv$config.prefix + __uv$config.encodeUrl(iframeSrc);
         }
-        // Set the iframe's src to the value stored in iframeSrc
-        frame.src = __uv$config.prefix + __uv$config.encodeUrl(iframeSrc);
-
-
-
     }
 });

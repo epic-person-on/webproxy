@@ -40,5 +40,11 @@ form.addEventListener("submit", async (event) => {
 	if (await connection.getTransport() !== "/epoxy/index.mjs") {
 		await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
 	}
-	frame.src = __uv$config.prefix + __uv$config.encodeUrl(url);
+	const isBlocked = blocked.some(blockedUrl => url.toLowerCase().includes(url.toLowerCase()));
+	if(isBlocked){
+		frame.src = "block.html";
+	}
+	else {
+		frame.src = __uv$config.prefix + __uv$config.encodeUrl(url);
+	}
 });
