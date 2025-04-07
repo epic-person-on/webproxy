@@ -1,7 +1,7 @@
 {
-	"name": "uv-app",
+	"name": "webproxy",
 	"version": "1.0.0",
-	"description": "Ultraviolet instance",
+	"description": "Ultraviolet frontend",
 	"type": "module",
 	"engines": {
 		"npm": ">=7.0.0",
