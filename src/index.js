@@ -14,6 +14,7 @@ import { baremuxPath } from "@mercuryworkshop/bare-mux/node";
 
 const ipUrlData = [];
 const fastify = Fastify({
+	trustProxy: true,
 	serverFactory: (handler) => {
 		return createServer()
 			.on("request", (req, res) => {
@@ -29,26 +30,27 @@ const fastify = Fastify({
 });
 
 // statistics webhook
-fastify.addHook('preHandler', async (request, reply) => {
-	console.log('Hook triggered for /hook route');
-  });
-  fastify.post('/hook', async (request, reply) => {
+fastify.addHook("preHandler", async (request, reply) => {});
+fastify.post("/hook", async (request, reply) => {
 	const { ip, url } = request.body;
-  
+
 	if (!ip || !url) {
-	  return reply.status(400).send({ message: 'IP and URL are required' });
+		return reply.status(400).send({ message: "IP and URL are required" });
 	}
-  
+
 	ipUrlData.push({ ip, url });
-  
-	return { message: 'Data saved successfully' };
-  });
-  
-  // GET route to retrieve all IPs and URLs
-  fastify.get('/hook', async (request, reply) => {
+
+	return { message: "Data saved successfully" };
+});
+
+fastify.get("/hook", async (request, reply) => {
 	return { data: ipUrlData };
-  });
-	
+});
+
+fastify.get("/user-ip", (request, reply) => {
+	const clientIp = request.ip;
+	reply.send(clientIp);
+});
 
 fastify.register(disableCache);
 
