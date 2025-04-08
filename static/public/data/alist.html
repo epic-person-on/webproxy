@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- Fixing viewport for proper scaling and zoom behavior -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game List</title>
     <style>
@@ -14,10 +15,19 @@
             color: #f1f1f1; /* Light text for dark mode */
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
             flex-direction: column;
-            gap: 20px;
+            align-items: center;
+            min-height: 100vh; /* Ensure it fills the whole height */
+        }
+
+        /* Container for the page content */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         /* Header (Search bar) */
@@ -27,18 +37,16 @@
             padding: 10px;
             display: flex;
             justify-content: center;
-            margin-bottom: 20px; /* Added space below the search bar */
         }
 
         .search-container input {
             width: 80%;
-            padding: 12px; /* Increased padding for better visibility */
+            padding: 12px;
             background-color: #333;
             color: #f1f1f1;
             border: 2px solid #444;
             border-radius: 5px;
-            font-size: 1rem;
-            box-sizing: border-box; /* Ensures padding is included in width */
+            font-size: 1.2rem; /* Increase font size to prevent zooming on small devices */
         }
 
         .search-container input::placeholder {
@@ -51,8 +59,6 @@
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px;
             padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
             width: 100%;
         }
 
@@ -98,15 +104,16 @@
 </head>
 <body>
 
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search for a game..." onkeyup="searchGames()">
+    <div class="container">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search for a game..." onkeyup="searchGames()">
+        </div>
+
+        <div class="game-list" id="gameList"></div>
     </div>
 
-    <div class="game-list" id="gameList"></div>
     <script src="./apps.js"></script>
     <script>
-        
-
         // Function to render games dynamically
         function renderGames(filteredGames) {
             const gameList = document.getElementById('gameList');
