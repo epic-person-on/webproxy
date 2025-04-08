@@ -1,8 +1,7 @@
 const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
+registerSW();
 
 window.addEventListener('load', function () {
-
-    registerSW();
 
     const urlParams = new URLSearchParams(window.location.search);
     const searchQuery = urlParams.get('q');
