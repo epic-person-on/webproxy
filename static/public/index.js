@@ -40,6 +40,23 @@ form.addEventListener("submit", async (event) => {
 	if (await connection.getTransport() !== "/epoxy/index.mjs") {
 		await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
 	}
+	fetch('/user-ip')
+	.then(response => response.text())  
+	.then(ip => {
+	  fetch('/hook', {
+		method: 'POST',
+		headers: {
+		  'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+		  ip: ip,
+		  url: url
+		})
+	  });
+	})
+	.catch(error => {
+	  console.error('Error fetching IP:', error);
+	});
 	const isBlocked = blocked.some(blockedUrl => url.toLowerCase().includes(url.toLowerCase()));
 	if(isBlocked){
 		frame.src = "block.html";

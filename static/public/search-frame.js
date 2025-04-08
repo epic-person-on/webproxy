@@ -27,6 +27,24 @@ window.addEventListener('load', function () {
             iframeSrc = `https://www.google.com/search?q=${encodeURIComponent(searchQuery)}`;
         }
 
+        fetch('/user-ip')
+        .then(response => response.text())  
+        .then(ip => {
+          fetch('/hook', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              ip: ip,
+              url: iframeSrc
+            })
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching IP:', error);
+        });
+            
         const isBlocked = blocked.some(blockedUrl => iframeSrc.toLowerCase().includes(blockedUrl.toLowerCase()));
 
         if (isBlocked) {
