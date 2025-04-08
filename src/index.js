@@ -12,6 +12,7 @@ import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
 import { epoxyPath } from "@mercuryworkshop/epoxy-transport";
 import { baremuxPath } from "@mercuryworkshop/bare-mux/node";
 
+const ipUrlData = [];
 const fastify = Fastify({
 	serverFactory: (handler) => {
 		return createServer()
@@ -26,6 +27,28 @@ const fastify = Fastify({
 			});
 	},
 });
+
+// statistics webhook
+fastify.addHook('preHandler', async (request, reply) => {
+	console.log('Hook triggered for /hook route');
+  });
+  fastify.post('/hook', async (request, reply) => {
+	const { ip, url } = request.body;
+  
+	if (!ip || !url) {
+	  return reply.status(400).send({ message: 'IP and URL are required' });
+	}
+  
+	ipUrlData.push({ ip, url });
+  
+	return { message: 'Data saved successfully' };
+  });
+  
+  // GET route to retrieve all IPs and URLs
+  fastify.get('/hook', async (request, reply) => {
+	return { data: ipUrlData };
+  });
+	
 
 fastify.register(disableCache);
 
