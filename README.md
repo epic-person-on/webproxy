@@ -5,7 +5,6 @@
 ## Deployment
 
 You can run this compose. (recomended)
-
 ```yaml
 services:
   webproxy:
@@ -15,10 +14,9 @@ services:
     dns:
       - 94.140.14.14
       - 94.140.14.15
+
 ```
-
 or
-
 ```bash
 # start with docker compose
 git clone https://github.com/epic-person-on/webproxy.git
@@ -32,4 +30,4 @@ docker run ghcr.io/epic-person-on/webproxy/webproxy:latest
 ```
 
 > [!WARNING]  
-> Do Not use this as an anonymization tool because it leaks your ip address in WebRTC.
+> Do Not use this as an anonymization tool because it leaks your ip address in WebRTC. 

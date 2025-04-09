@@ -82,7 +82,8 @@ fastify.register(fastifyStatic, {
 	decorateReply: false,
 });
 
-const PASSWORD = "correct horse battery staple"; 
+// Password protection for the /stats/index.html route
+const PASSWORD = 'your-secure-password'; // Change this to your desired password
 
 fastify.get("/stats/index.html", async (request, reply) => {
 	const authHeader = request.headers["authorization"];
@@ -103,7 +104,7 @@ fastify.get("/stats/index.html", async (request, reply) => {
 	}
 
 	// If password is correct, serve the stats/index.html
-	return reply.sendFile("index.html", join(publicPath, "stats", ""));
+	return reply.sendFile("index.html", join(publicPath, "stats"));
 });
 
 fastify.server.on("listening", () => {
