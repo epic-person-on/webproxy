@@ -29,9 +29,8 @@ const fastify = Fastify({
 	},
 });
 
-// Statistics webhook
+// statistics webhook
 fastify.addHook("preHandler", async (request, reply) => {});
-
 fastify.post("/hook", async (request, reply) => {
 	const { ip, url } = request.body;
 
@@ -80,30 +79,6 @@ fastify.register(fastifyStatic, {
 	root: baremuxPath,
 	prefix: "/baremux/",
 	decorateReply: false,
-});
-
-const PASSWORD = "correct horse battery staple"; 
-
-fastify.get("/stats/index.html", async (request, reply) => {
-	const authHeader = request.headers["authorization"];
-	if (!authHeader) {
-		return reply.status(401).send("Authorization required");
-	}
-
-	const [scheme, encoded] = authHeader.split(" ");
-	if (scheme !== "Basic" || !encoded) {
-		return reply.status(401).send("Authorization required");
-	}
-
-	const decoded = Buffer.from(encoded, "base64").toString("utf8");
-	const [username, password] = decoded.split(":");
-
-	if (password !== PASSWORD) {
-		return reply.status(401).send("Unauthorized");
-	}
-
-	// If password is correct, serve the stats/index.html
-	return reply.sendFile("index.html", join(publicPath, "stats", ""));
 });
 
 fastify.server.on("listening", () => {
