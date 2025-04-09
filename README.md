@@ -8,8 +8,7 @@ You can run this compose. (recomended)
 ```yaml
 services:
   webproxy:
-    image: 
-      - "ghcr.io/epic-person-on/webproxy/webproxy:latest"
+    image: "ghcr.io/epic-person-on/webproxy/webproxy:latest"
     ports:
       - "3000:3000"
     dns:
@@ -31,4 +30,4 @@ docker run ghcr.io/epic-person-on/webproxy/webproxy:latest
 ```
 
 > [!WARNING]  
-> Do Not use this as an anonymization tool because it leaks WebRTC ip. 
+> Do Not use this as an anonymization tool because it leaks your ip address in WebRTC. 
