@@ -4,7 +4,7 @@
 
 ## Deployment
 
-You can run this compose.
+You can run this compose. (recomended)
 ```yaml
 services:
   webproxy:

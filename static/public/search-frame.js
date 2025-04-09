@@ -58,5 +58,5 @@ window.addEventListener('load', function () {
               frame.src = __uv$config.prefix + __uv$config.encodeUrl(iframeSrc);
           }
       }
-    }, 125);
+    }, 50);
 });
