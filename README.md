@@ -30,5 +30,5 @@ docker compose up -d
 docker run ghcr.io/epic-person-on/webproxy/webproxy:latest
 ```
 
-> [!IMPORTANT]  
-> Until deployed on a domain with a valid SSL certificate, Firefox will not be able to load the site. Use chromium for testing on localhost
+> [!WARNING]  
+> Do Not use this as an anonymization tool because it leaks WebRTC ip. 
