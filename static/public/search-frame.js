@@ -2,7 +2,7 @@ const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
 registerSW();
 
 window.addEventListener('load', function () {
-    setTimeout(function() {
+    setTimeout(async function() {
 
       const urlParams = new URLSearchParams(window.location.search);
       const searchQuery = urlParams.get('q');
@@ -51,12 +51,12 @@ window.addEventListener('load', function () {
               frame.src = "block.html";  
           } else {
               let wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
-              if (connection.getTransport() !== "/epoxy/index.mjs") {
-                  connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
+              if (await connection.getTransport() !== "/epoxy/index.mjs") {
+                  await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
               }
 
               frame.src = __uv$config.prefix + __uv$config.encodeUrl(iframeSrc);
           }
       }
-    }, 50);
+    }, 25);
 });
