@@ -17,7 +17,7 @@ services:
       - 94.140.14.15
 
 ```
-
+or
 ```bash
 # start with docker compose
 git clone https://github.com/epic-person-on/webproxy.git
