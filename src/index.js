@@ -5,12 +5,14 @@ import wisp from "wisp-server-node";
 import Fastify from "fastify";
 import fastifyStatic from "@fastify/static";
 import disableCache from "fastify-disablecache";
+import { createHash } from 'crypto';
 
 // static paths
 import { publicPath } from "ultraviolet-static";
 import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
 import { epoxyPath } from "@mercuryworkshop/epoxy-transport";
 import { baremuxPath } from "@mercuryworkshop/bare-mux/node";
+
 
 const ipUrlData = [];
 const fastify = Fastify({
@@ -48,7 +50,7 @@ fastify.get("/hook", async (request, reply) => {
 });
 
 fastify.get("/user-ip", (request, reply) => {
-	const clientIp = request.ip;
+	const clientIp = createHash('sha256').update(request.ip).digest('base64');
 	reply.send(clientIp);
 });
 

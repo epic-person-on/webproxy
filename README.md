@@ -32,4 +32,4 @@ docker run ghcr.io/epic-person-on/webproxy/webproxy:latest
 ```
 
 > [!WARNING]  
-> Do Not use this as an anonymization tool because it leaks your ip address in WebRTC.
+> Do Not use this as an anonymization tool because it leaks your ip address in WebRTC. Also searches are logged on the route /stats so assume nothing is private.
