@@ -11,8 +11,7 @@
 		"start": "node src/index.js",
 		"format": "prettier --config .prettierrc.js --write .",
 		"lint": "eslint ./src/",
-		"lint:fix": "eslint ./src/ --fix",
-		"test": "jest"
+		"lint:fix": "eslint ./src/ --fix"
 	},
 	"keywords": [
 		"proxy"
@@ -29,8 +28,7 @@
 		"fastify-disablecache": "^4.0.1",
 		"ultraviolet-static": "file:static",
 		"wisp-server-node": "^1.1.7",
-		"ws": "^8.18.0",
-	        "jest": "^29.0.0"
+		"ws": "^8.18.0"
 
 	},
 	"devDependencies": {
